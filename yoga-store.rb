@@ -1,3 +1,4 @@
+
 @shopping_cart = []
 
 @departments = [ :accessories, :clothes, :books, :media ]
@@ -5,7 +6,7 @@
 @products = {
   accessories: [
     { reference_number: 1231, name: "The only mat", price: 15 },
-    { reference_number: 1232, name: "The only water bottle", price: 20 },
+    { reference_number: 1232, name: "Water bottle", price: 20 },
   ],
   media: [
     { reference_number: 1233, name: "Relaxing Music", price: 25 },
@@ -21,6 +22,26 @@
   ]
 }
 
+# product list according to the department
+def product_list (chosen_department)
+
+department = @departments[chosen_department-1]
+products = @products[department]
+
+  puts "Here's a list of available products in the #{department.to_s.upcase} department:"
+  products.each { |product|
+  puts "Reference number: #{product[:reference_number]}"
+  puts "Product: #{product[:name]}"
+  puts "Price: #{product[:price]} EUR"
+  }
+
+return products
+
+end
+
+
+
+#VISITING STORE
 puts "Welcome to our minimalistic yoga-store!\n
 You'll like it as you won't have to spend too much time on making a choice...\n
 Time for your first choice - what department do you want to visit?\n
@@ -31,29 +52,30 @@ Type the number of the desired department\n\n
   3 - Clothes\n
   4 - Books"
 
-  user_choice_department = gets.chomp
+user_choice_department= gets.chomp
+
 
   case user_choice_department
   when "1"
-      accessories_products = @products.select { |key| key == :accessories }
-      #list = accessories_products.values.flatten
+    product_list(1)
 
-      puts "Here's a list of available accessories:\nRef. number   --   Name of Product  -- Price (in Eur)"
-
-      accessories_products.each_value { |value| puts "\n#{value[0][:reference_number]}          --      #{value[0][:name]}  --  #{value[0][:price]}\n" }
 
 
 
   when "2"
+    product_list(2)
 
 
   when "3"
+    product_list(3)
 
 
   when "4"
+    product_list(4)
 
 
   else
+    puts "Please, choose department by typing from 1 to 4"
 
 
   end
