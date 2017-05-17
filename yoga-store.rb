@@ -39,6 +39,30 @@ return products
 
 end
 
+# Adding products to shopping cart
+def choose_product
+  puts "You can add a product to your shopping cart by typing its reference_number:"
+  gets.chomp.to_i
+end
+
+def selected_product(products, chosen_reference_number)
+  products.each do |product|
+    if product[:reference_number] == chosen_reference_number.to_i
+      return product
+    end
+  end
+end
+
+def add_product_to_cart(products, chosen_reference_number)
+  product = selected_product(products, chosen_reference_number)
+  if product != nil
+    @shopping_cart.push(product)
+    puts "Great! You have just added #{product[:name]} to the cart!"
+  else
+    puts "Oops. Try typing the correct reference number."
+  end
+end
+
 
 
 #VISITING STORE
@@ -57,7 +81,10 @@ user_choice_department= gets.chomp
 
   case user_choice_department
   when "1"
-    product_list(1)
+    department_products = product_list(1)
+    chosen_reference_number = choose_product
+    add_product_to_cart(department_products, chosen_reference_number)
+
 
 
 
