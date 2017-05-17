@@ -64,8 +64,42 @@ def add_product_to_cart(products, chosen_reference_number)
 end
 
 
+# Displaying shopping cart
+def displaying_cart
+  puts "Your Shopping Cart"
+  total_price = 0
+
+@shopping_cart.each do |product|
+  puts "Reference number: #{product[:reference_number]}"
+  puts "Product name: #{product[:name]}"
+  puts "Price: #{product[:price]}"
+
+  total_price += product[:price]
+
+  end
+end
+
+
+# Continue shopping
+def continue_shopping
+  puts "Would you like to continue shopping? Y/N"
+  answer = gets.chomp.upcase
+  if answer == "Y"
+    return true
+  end
+end
+
+
+# Calculating the total price
+
+
+
+
+
 
 #VISITING STORE
+loop do
+
 puts "Welcome to our minimalistic yoga-store!\n
 You'll like it as you won't have to spend too much time on making a choice...\n
 Time for your first choice - what department do you want to visit?\n
@@ -84,6 +118,12 @@ user_choice_department= gets.chomp
     department_products = product_list(1)
     chosen_reference_number = choose_product
     add_product_to_cart(department_products, chosen_reference_number)
+    displaying_cart
+    continue = continue_shopping
+    if continue == false
+      break
+    end
+
 
 
 
@@ -106,3 +146,5 @@ user_choice_department= gets.chomp
 
 
   end
+
+end
