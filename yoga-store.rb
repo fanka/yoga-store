@@ -33,6 +33,7 @@ products = @products[department]
   puts "Reference number: #{product[:reference_number]}"
   puts "Product: #{product[:name]}"
   puts "Price: #{product[:price]} EUR"
+  asteriks
   }
 
 return products
@@ -76,7 +77,11 @@ def displaying_cart
 
   total_price += product[:price]
 
+  asteriks
+
   puts "The total price of your order is: #{total_price} Eur"
+
+  asteriks
 
   end
 end
@@ -92,7 +97,16 @@ def continue_shopping
 end
 
 
-# Calculating the total price
+# Decorating
+
+def new_line
+  puts "\nl"
+end
+
+def asteriks
+  puts "*" * 20
+end
+
 
 
 
