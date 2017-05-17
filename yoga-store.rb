@@ -41,7 +41,7 @@ end
 
 # Adding products to shopping cart
 def choose_product
-  puts "You can add a product to your shopping cart by typing its reference_number:"
+  puts "You can add a product to your shopping cart by typing its reference number:"
   gets.chomp.to_i
 end
 
@@ -76,6 +76,8 @@ def displaying_cart
 
   total_price += product[:price]
 
+  puts "The total price of your order is: #{total_price} Eur"
+
   end
 end
 
@@ -83,8 +85,8 @@ end
 # Continue shopping
 def continue_shopping
   puts "Would you like to continue shopping? Y/N"
-  answer = gets.chomp.upcase
-  if answer == "Y"
+  answer = gets.chomp
+  if answer == "Y" || answer == "y"
     return true
   end
 end
@@ -106,11 +108,25 @@ Time for your first choice - what department do you want to visit?\n
 Type the number of the desired department\n\n
 
   1 - Accessories\n
-  2 - Media\n
-  3 - Clothes\n
-  4 - Books"
+  2 - Clothes\n
+  3 - Books\n
+  4 - Media"
 
 user_choice_department= gets.chomp
+
+department_products = product_list(user_choice_department.to_i)
+chosen_reference_number = choose_product
+add_product_to_cart(department_products, chosen_reference_number)
+displaying_cart
+continue = continue_shopping
+unless continue == true
+  puts "Thanks for visiting our store! Hope to see you soon!"
+  break
+end
+
+
+
+=begin
 
 
   case user_choice_department
@@ -120,7 +136,8 @@ user_choice_department= gets.chomp
     add_product_to_cart(department_products, chosen_reference_number)
     displaying_cart
     continue = continue_shopping
-    if continue == false
+    unless continue == true
+      puts "Thanks for visiting our store! Hope to see you soon!"
       break
     end
 
@@ -131,20 +148,46 @@ user_choice_department= gets.chomp
 
   when "2"
     product_list(2)
+    chosen_reference_number = choose_product
+    add_product_to_cart(department_products, chosen_reference_number)
+    displaying_cart
+    continue = continue_shopping
+    unless continue == true
+      puts "Thanks for visiting our store! Hope to see you soon!"
+      break
+    end
 
 
   when "3"
     product_list(3)
+    chosen_reference_number = choose_product
+    add_product_to_cart(department_products, chosen_reference_number)
+    displaying_cart
+    continue = continue_shopping
+    unless continue == true
+      puts "Thanks for visiting our store! Hope to see you soon!"
+      break
+    end
 
 
   when "4"
     product_list(4)
+    chosen_reference_number = choose_product
+    add_product_to_cart(department_products, chosen_reference_number)
+    displaying_cart
+    continue = continue_shopping
+    unless continue == true
+      puts "Thanks for visiting our store! Hope to see you soon!"
+      break
+    end
 
 
   else
     puts "Please, choose department by typing from 1 to 4"
+    break
 
 
   end
+=end
 
 end
