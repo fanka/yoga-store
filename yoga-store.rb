@@ -35,10 +35,25 @@ Type the number of the desired department\n\n
 
   case user_choice_department
   when "1"
-  when "2"
-  when "3"
-  when "4"
-  else
-  end
+      accessories_products = @products.select { |key| key == :accessories }
+      #list = accessories_products.values.flatten
 
-  
+      puts "Here's a list of available accessories:\nRef. number   --   Name of Product  -- Price (in Eur)"
+
+      accessories_products.each_value { |value| puts "\n#{value[0][:reference_number]}          --      #{value[0][:name]}  --  #{value[0][:price]}\n" }
+
+
+
+  when "2"
+
+
+  when "3"
+
+
+  when "4"
+
+
+  else
+
+
+  end
